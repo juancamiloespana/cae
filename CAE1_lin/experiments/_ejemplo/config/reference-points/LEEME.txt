@@ -1,0 +1,311 @@
+# Puntos de Referencia para HV y Epsilon
+
+Documentación sobre cómo definir el archivo `points.txt` que especifica los puntos de referencia (ideal y nadir) para el cálculo de métricas.
+
+## ¿Qué es `points.txt`?
+
+Archivo de texto que contiene **exactamente 2 líneas no vacías**:
+
+```
+< z_ideal >
+< z_nadir >
+```
+
+Donde:
+- **`z_ideal`**: Punto ideal (mejor valor deseado para cada objetivo)
+- **`z_nadir`**: Punto nadir (peor valor tolerable para cada objetivo)
+
+## Ejemplo
+
+Para un problema con 2 objetivos:
+
+```
+0.0 0.0
+10.0 10.0
+```
+
+Interpretación:
+- Objetivo 1 (minimizar): ideal = 0.0, nadir = 10.0
+- Objetivo 2 (minimizar): ideal = 0.0, nadir = 10.0
+
+---
+
+## Definir los Puntos
+
+### Paso 1: Entender los Objetivos
+
+Primero, entiende qué **minimizas** y qué **maximizas**:
+
+```
+Ejemplo de problema combinatorio:
+
+Minimizar:
+  f1 = costo operativo (queremos que sea 0 o cercano)
+  
+Maximizar:
+  f2 = calidad de solución (queremos que sea 100 o cercano)
+```
+
+### Paso 2: Invertir Maximización a Minimización
+
+Opt4J y este proyecto asumin **minimización**. Si tienes maximización, invierte el signo:
+
+```
+Original:
+  Maximizar: f2 in [0, 100]        (queremos 100)
+  
+Invertido:
+  Minimizar: -f2 in [-100, 0]      (queremos -100, es decir 0 en escala invertida)
+```
+
+### Paso 3: Definir Ideal y Nadir
+
+**Ideal**: Mejor valor POSIBLE (puede ser utópico, no alcanzable)
+- Para minimizar: valor bajo
+- Para maximizar (invertido): valor bajo después de invertir
+
+```
+Ejemplos:
+
+Minimizar costo in [0, 1000]:
+  ideal = 0          (mejor costo posible)
+  nadir = 1000       (peor costo tolerable)
+
+Maximizar quality in [0, 100]:
+  invertido: minimizar -quality in [-100, 0]
+  ideal = -100       (mejor quality invertida)
+  nadir = 0          (peor quality invertida)
+
+Mezcla:
+  f1 minimizar cost in (0, 50)
+  f2 maximizar quality in (50, 100)
+  
+  Invertir f2: -quality in [-100, -50]
+  
+  points.txt:
+  0 -100             (ideal: costo mínimo, quality máxima)
+  50 -50             (nadir: costo máximo tolerable, quality mínima tolerable)
+```
+
+### Paso 4: Crear el Archivo
+
+Edita `config/reference-points/points.txt`:
+
+```
+<zideal_1> <zideal_2> ... <zideal_nobj>
+<znadir_1> <znadir_2> ... <znadir_nobj>
+```
+
+Ejemplo para 2 objetivos:
+```
+0.0 0.0
+10.0 10.0
+```
+
+Ejemplo para 3 objetivos:
+```
+0 -100 0
+50 -50 1000
+```
+
+---
+
+## Reglas Importantes
+
+1. **Exactamente 2 líneas**
+   ```
+   ✓ Bien:
+   0.0 0.0
+   10.0 10.0
+   
+   ✗ Mal (falta nadir):
+   0.0 0.0
+   
+   ✗ Mal (línea vacía):
+   0.0 0.0
+   
+   10.0 10.0
+   ```
+
+2. **Ideal < Nadir en cada objetivo**
+   ```
+   ✓ Bien:
+   0.0 0.0         (ideal: ambos ceros)
+   10.0 10.0       (nadir: ambos diez)
+   
+   ✗ Mal (ideal ≥ nadir):
+   10.0 15.0       (ideal mayor que nadir en obj1)
+   5.0 20.0
+   ```
+
+3. **Valores separados por espacios**
+   ```
+   ✓ Bien:
+   0 10 20
+   100 200 300
+   
+   ✓ Bien (tabulaciones):
+   0	10	20
+   100	200	300
+   
+   ✗ Mal (comas):
+   0, 10, 20
+   100, 200, 300
+   ```
+
+4. **Comentarios permitidos** (líneas que comienzan con #)
+   ```
+   # Esto es un comentario
+   # Experimento de optimización 2D
+   0.0 0.0         # Ideal
+   10.0 10.0       # Nadir
+   ```
+
+---
+
+## Caso de Uso: Problema de Benchmark Conocido
+
+### ZDT1 (Popular en la literatura)
+
+```
+f1 in [0, 1]:      minimizar (ya está en rango correcto)
+f2 in [0, 100]:    minimizar
+referencia        ≈ en [0, 1] x [0, 100]
+
+Ideal (utópico):
+f1 = 0 (mejor posible)
+f2 = 0 (mejor posible)
+
+Nadir (límite superior):
+f1 = 1 (peor en rango)
+f2 = 100 (peor en rango)
+
+Archivo points.txt:
+0 0
+1 100
+```
+
+### ZDT2 (con maximización)
+
+```
+f1 in [0, 1]:      minimizar
+f2 in [0, 100]:    MAXIMIZAR
+
+Invertir f2: -f2 in [-100, 0]
+
+Ideal (utópico):
+f1 = 0 (mejor minimizar)
+f2 = -100 (mejor maximizar, es decir 100 original)
+
+Nadir:
+f1 = 1 (peor minimizar)
+f2 = 0 (peor maximizar, es decir 0 original)
+
+Archivo points.txt:
+0 -100
+1 0
+```
+
+---
+
+## Validación
+
+El script `run_metrics.py` valida automáticamente:
+
+✗ Si ideal ≥ nadir en cualquier objetivo:
+```
+ERROR: En points.txt, componente 1: ideal (10.0) debe ser < nadir (5.0)
+```
+
+✗ Si el archivo no existe:
+```
+ERROR: No existe el fichero de puntos: config/reference-points/points.txt
+```
+
+✗ Si hay líneas vacías o comentarios mal formados:
+```
+ERROR: points.txt debe contener exactamente 2 lineas no vacias
+```
+
+---
+
+## Preguntas Frecuentes
+
+### P: ¿Qué pasa si mi ideal es inalcanzable?
+
+R: No hay problema. El ideal puede ser utópico. Ejemplo:
+
+```
+Costo en [1, 100]  (nunca es 0 en la práctica)
+
+points.txt:
+0         (ideal utópico: costo cero)
+100       (nadir: costo máximo)
+```
+
+El HV y epsilon se alarán acorde.
+
+### P: ¿El orden importa (ideal primero, nadir segundo)?
+
+R: SÍ. Primera línea = ideal, segunda línea = nadir.
+
+```
+✓ Correcto:
+0
+100
+
+✗ Incorrecto (orden invertido):
+100
+0
+```
+
+### P: ¿Puedo tener 1 objetivo?
+
+R: No. Este proyecto requiere nobj ≥ 2. Usa este solo para problemas multi-objetivo.
+
+### P: ¿Qué pasa si un punto está fuera [ideal, nadir]?
+
+R: Por defecto, el script falla (--strict-box).
+
+```
+Si configuras: --allow-outside-box
+El punto se descarta silenciosamente (no se usa en métricas)
+```
+
+Para cambiar esto, edita `scripts/run_metrics.bat` o `.sh`:
+
+```batch
+%PYTHON_CMD% %SCRIPT% ... --allow-outside-box
+```
+
+### P: ¿Cómo interpreto valores negativos?
+
+R: Los negativos son legítimos, especialmente cuando inviertes objetivos:
+
+```
+Maximizar quality in [50, 100]:
+   Invertido: -quality in [-100, -50]
+   
+points.txt:
+-100 (ideal: calidad máxima = -100)
+-50  (nadir: calidad mínima = -50)
+```
+
+Nada especial, el script maneja negativos sin problema.
+
+---
+
+## Guía Rápida
+
+| Archivo | Cambio Necesario |
+|---------|------------------|
+| config1.xml | Si cambias el problema |
+| points.txt | Si cambias el rango de objetivos |
+
+Después de cambiar cualquiera:
+1. Ejecuta `run_experiments.bat` (crea nuevos logs)
+2. Ejecuta `run_metrics.bat` (calcula métricas)
+
+---
+
+**¿Necesitas ayuda? Ve a [../guia-uso.md](../guia-uso.md) o [../README.md](../README.md)**

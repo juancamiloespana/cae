@@ -1,0 +1,20 @@
+Esta carpeta contiene el codigo fuente Python del proyecto.
+
+Ficheros principales:
+
+- run_experiments.py
+  Orquesta la ejecucion de experimentos Opt4J.
+  Lee configuraciones desde config/experiments y genera logs en data/logs.
+  Tambien genera el script de gnuplot ParetoRunsExpA_vs_ExpB.plot en data/results/plots.
+
+- run_metrics.py
+  Calcula metricas de calidad a partir de los logs (HV y epsilon).
+  Genera archivos de resultados en data/results, incluyendo:
+  - HV-ExpN.txt
+  - HVBest-ExpN.txt
+  - RefFront-ExpN.txt
+  - metrics-summary.csv
+  - scripts de gnuplot de boxplots y RefFronts.plot
+
+Nota:
+Los scripts de esta carpeta suelen ejecutarse mediante los lanzadores en scripts/.

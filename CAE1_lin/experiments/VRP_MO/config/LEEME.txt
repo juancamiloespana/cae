@@ -1,0 +1,16 @@
+Esta carpeta contiene la configuracion de los experimentos y los puntos de referencia para metricas.
+
+Estructura esperada:
+
+- experiments/
+  Contiene los ficheros de configuracion de Opt4J por experimento.
+  Formato esperado: config<N>.xml (por ejemplo, config1.xml, config2.xml, ...).
+
+- reference-points/
+  Contiene los puntos de referencia usados por el calculo de metricas:
+  - points.txt (punto ideal y punto nadir)
+  - README.md (documentacion del formato y uso)
+
+Nota:
+El script src/run_experiments.py toma los XML desde config/experiments.
+El script src/run_metrics.py usa points.txt desde config/reference-points.

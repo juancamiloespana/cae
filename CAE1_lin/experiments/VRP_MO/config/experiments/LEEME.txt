@@ -1,0 +1,9 @@
+Esta carpeta contiene los ficheros de configuracion de experimentos para Opt4J.
+
+Formato esperado:
+- config<N>.xml
+  Donde <N> es el identificador del experimento (1, 2, 3, ...).
+
+Uso:
+- El script src/run_experiments.py lee estos archivos para ejecutar las corridas.
+- Si se anade un nuevo experimento, crear su config<N>.xml correspondiente.

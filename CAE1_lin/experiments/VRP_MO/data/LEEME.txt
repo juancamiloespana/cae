@@ -1,0 +1,21 @@
+Esta carpeta contiene los datos generados por las ejecuciones y el postproceso.
+
+Estructura esperada:
+
+- logs/
+  Contiene los logs crudos de Opt4J por experimento y ejecución.
+  Formato esperado: <exp>_<run>.tsv (por ejemplo, 1_1.tsv, 2_15.tsv, etc.).
+  Estos archivos los genera src/run_experiments.py.
+
+- results/
+  Contiene resultados derivados y metricas calculadas desde logs/.
+  Archivos tipicos:
+  - HV-ExpN.txt
+  - HVBest-ExpN.txt
+  - RefFront-ExpN.txt
+  - metrics-summary.csv
+  - plots/ (scripts .plot para gnuplot)
+  Estos archivos los genera src/run_metrics.py y, en el caso de ParetoRunsExpA_vs_ExpB.plot, src/run_experiments.py.
+
+Nota:
+No se recomienda editar manualmente los archivos en data/results salvo para inspeccion.

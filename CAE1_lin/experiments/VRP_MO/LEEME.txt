@@ -1,0 +1,54 @@
+﻿Esta es la carpeta raiz del proyecto experiments_in_python.
+
+Contiene la estructura principal para ejecutar experimentos multiobjetivo,
+calcular metricas (HV y epsilon) y visualizar resultados.
+
+Carpetas principales:
+
+- config/
+  Configuracion de entrada del proyecto.
+  Incluye:
+  - experiments/ (config<N>.xml de Opt4J)
+  - reference-points/ (points.txt con ideal/nadir)
+
+- src/
+  Codigo fuente Python.
+  Incluye:
+  - run_experiments.py (genera logs desde Opt4J)
+  - run_metrics.py (calcula metricas y frentes de referencia)
+
+- scripts/
+  Lanzadores y scripts auxiliares.
+  Incluye:
+  - run_experiments.bat / run_experiments.sh
+  - run_metrics.bat / run_metrics.sh
+  - IndexPlots.plot (indice de graficas gnuplot)
+
+- data/
+  Salidas generadas.
+  Incluye:
+  - logs/ (ficheros <exp>_<run>.tsv)
+  - results/ (metricas, frentes de referencia y scripts .plot)
+
+- docs/
+  Documentacion del proyecto (uso, arquitectura, ejecucion).
+
+Ficheros de referencia en la raiz:
+
+- SETUP.md
+  Guia de instalacion y preparacion del entorno.
+
+- README.md
+  Resumen general del proyecto y contexto.
+
+- LEEME.txt
+  Este indice rapido de estructura.
+
+Flujo recomendado:
+
+1. Revisar SETUP.md y README.md.
+2. Crear los XML del plan de experimentacion en config/experiments (config<N>.xml).
+3. Ejecutar scripts/run_experiments.bat (o .sh) para generar logs.
+4. Definir los puntos de referencia para HV en config/reference-points/points.txt.
+5. Ejecutar scripts/run_metrics.bat (o .sh) para calcular metricas.
+6. Revisar data/results y visualizar .plot con gnuplot.

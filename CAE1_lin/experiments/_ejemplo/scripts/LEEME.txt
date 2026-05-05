@@ -1,0 +1,28 @@
+Esta carpeta contiene scripts de ejecucion y visualizacion del proyecto.
+
+Ficheros incluidos:
+
+- run_experiments.bat
+  Lanzador en Windows para ejecutar src/run_experiments.py.
+  Se usa para generar/actualizar logs de ejecuciones en data/logs.
+
+- run_experiments.sh
+  Lanzador en Linux/macOS para ejecutar src/run_experiments.py.
+  Equivalente funcional al .bat anterior.
+
+- run_metrics.bat
+  Lanzador en Windows para ejecutar src/run_metrics.py.
+  Calcula metricas (HV, epsilon) y genera salidas en data/results.
+
+- run_metrics.sh
+  Lanzador en Linux/macOS para ejecutar src/run_metrics.py.
+  Equivalente funcional al .bat anterior.
+
+- IndexPlots.plot
+  Script de gnuplot para cargar visualizaciones en secuencia desde data/results/plots.
+
+- IndexPlots copy.plot
+  Variante/copia local de script gnuplot usada para pruebas o ajustes manuales.
+
+Nota:
+Los scripts .bat/.sh se ejecutan desde la raiz del proyecto experiments_in_python.

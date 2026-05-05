@@ -1,0 +1,23 @@
+<configuration>
+  <module class="org.opt4j.CAE.VRP.VRPModule">
+    <property name="clients">100</property>
+    <property name="totalVehicles">10</property>
+  </module>
+  <module class="org.opt4j.core.common.logger.LoggerModule">
+    <property name="filename">output.tsv</property>
+    <property name="loggingPerEvaluation">false</property>
+    <property name="evaluationStep">100</property>
+    <property name="loggingPerIteration">true</property>
+    <property name="iterationStep">1000</property>
+  </module>
+  <module class="org.opt4j.optimizers.ea.EvolutionaryAlgorithmModule">
+    <property name="generations">1000</property>
+    <property name="alpha">100</property>
+    <property name="mu">100</property>
+    <property name="lambda">100</property>
+    <property name="crossoverRate">0.95</property>
+  </module>
+  <module class="org.opt4j.optimizers.ea.Nsga2Module">
+    <property name="tournament">2</property>
+  </module>
+</configuration>
