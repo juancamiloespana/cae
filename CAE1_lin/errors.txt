@@ -1,0 +1,163 @@
+
+D:\cod\CAE1_win\experiments\VRP_MO>scripts\run_experiments.bat
+
+D:\cod\CAE1_win\experiments\VRP_MO>´╗┐@echo off
+"´╗┐@echo" no se reconoce como un comando interno o externo,
+programa o archivo por lotes ejecutable.
+
+D:\cod\CAE1_win\experiments\VRP_MO>REM Cambiar al directorio del proyecto (directorio padre de scripts)
+
+D:\cod\CAE1_win\experiments\VRP_MO>cd /d "D:\cod\CAE1_win\experiments\VRP_MO\scripts\.."
+
+D:\cod\CAE1_win\experiments\VRP_MO>set "PYTHON_CMD=python"
+
+D:\cod\CAE1_win\experiments\VRP_MO>set "SCRIPT=src\run_experiments.py"
+
+D:\cod\CAE1_win\experiments\VRP_MO>set "OPT4J_CMD=..\..\opt4j\bin\opt4j-JVM1.8.bat"
+
+D:\cod\CAE1_win\experiments\VRP_MO>set "EXP_DIR=config\experiments"
+
+D:\cod\CAE1_win\experiments\VRP_MO>set "LOG_DIR=data\logs"
+
+D:\cod\CAE1_win\experiments\VRP_MO>set "RESULTS_DIR=data\results"
+
+D:\cod\CAE1_win\experiments\VRP_MO>set "RUNS=5"
+
+D:\cod\CAE1_win\experiments\VRP_MO>echo.
+
+
+D:\cod\CAE1_win\experiments\VRP_MO>echo ==========================================
+==========================================
+
+D:\cod\CAE1_win\experiments\VRP_MO>echo  Lanzando experimentos de optimizacion
+ Lanzando experimentos de optimizacion
+
+D:\cod\CAE1_win\experiments\VRP_MO>echo ==========================================
+==========================================
+
+D:\cod\CAE1_win\experiments\VRP_MO>echo.
+
+
+D:\cod\CAE1_win\experiments\VRP_MO>python src\run_experiments.py   --opt4j-cmd ..\..\opt4j\bin\opt4j-JVM1.8.bat   --exp-dir config\experiments   --log-dir data\logs   --results-dir data\results   --runs 5
+==========================================
+Experimentos      : [1, 2, 3]
+Ejecuciones/run   : 5
+Directorio base   : D:\cod\CAE1_win\experiments\VRP_MO
+Carpeta configs   : D:\cod\CAE1_win\experiments\VRP_MO\config\experiments
+Carpeta logs      : D:\cod\CAE1_win\experiments\VRP_MO\data\logs
+Carpeta resultados: D:\cod\CAE1_win\experiments\VRP_MO\data\results
+Salida temporal   : D:\cod\CAE1_win\experiments\VRP_MO\output.tsv
+Comando OPT4J     : ..\..\opt4j\bin\opt4j-JVM1.8.bat
+==========================================
+
+------------------------------------------
+Experimento 1
+Configuracion: D:\cod\CAE1_win\experiments\VRP_MO\config\experiments\config1.xml
+------------------------------------------
+[Experimento 1 - RUN 1/5] Ejecutando...
+Starting Opt4J v3.2 (Build 2018-04-02)
+com.google.inject.CreationException: Unable to create injector, see the following errors:
+
+1) No implementation for java.lang.String annotated with @org.opt4j.core.start.Constant(namespace=class java.lang.Object, value=control station file) was bound.
+  while locating java.lang.String annotated with @org.opt4j.core.start.Constant(namespace=class java.lang.Object, value=control station file)
+    for the 4th parameter of org.opt4j.CAE.VRP.VRPProblem.<init>(VRPProblem.java:132)
+  while locating org.opt4j.CAE.VRP.VRPProblem
+    for the 1st parameter of org.opt4j.CAE.VRP.VRPCreator.<init>(VRPCreator.java:27)
+  at org.opt4j.core.problem.ProblemModule.bindProblem(ProblemModule.java:140)
+
+2) No implementation for java.lang.String annotated with @org.opt4j.core.start.Constant(namespace=class java.lang.Object, value=control station file) was bound.
+  while locating java.lang.String annotated with @org.opt4j.core.start.Constant(namespace=class java.lang.Object, value=control station file)
+    for the 4th parameter of org.opt4j.CAE.VRP.VRPProblem.<init>(VRPProblem.java:132)
+  while locating org.opt4j.CAE.VRP.VRPProblem
+    for the 1st parameter of org.opt4j.CAE.VRP.VRPDecoder.<init>(VRPDecoder.java:30)
+  at org.opt4j.core.problem.ProblemModule.bindProblem(ProblemModule.java:140)
+
+3) No implementation for java.lang.String annotated with @org.opt4j.core.start.Constant(namespace=class java.lang.Object, value=swept file) was bound.
+  while locating java.lang.String annotated with @org.opt4j.core.start.Constant(namespace=class java.lang.Object, value=swept file)
+    for the 3rd parameter of org.opt4j.CAE.VRP.VRPProblem.<init>(VRPProblem.java:132)
+  while locating org.opt4j.CAE.VRP.VRPProblem
+    for the 1st parameter of org.opt4j.CAE.VRP.VRPCreator.<init>(VRPCreator.java:27)
+  at org.opt4j.core.problem.ProblemModule.bindProblem(ProblemModule.java:140)
+
+4) No implementation for java.lang.String annotated with @org.opt4j.core.start.Constant(namespace=class java.lang.Object, value=swept file) was bound.
+  while locating java.lang.String annotated with @org.opt4j.core.start.Constant(namespace=class java.lang.Object, value=swept file)
+    for the 3rd parameter of org.opt4j.CAE.VRP.VRPProblem.<init>(VRPProblem.java:132)
+  while locating org.opt4j.CAE.VRP.VRPProblem
+    for the 1st parameter of org.opt4j.CAE.VRP.VRPDecoder.<init>(VRPDecoder.java:30)
+  at org.opt4j.core.problem.ProblemModule.bindProblem(ProblemModule.java:140)
+
+4 errors
+        at com.google.inject.internal.Errors.throwCreationExceptionIfErrorsExist(Errors.java:470)
+        at com.google.inject.internal.InternalInjectorCreator.initializeStatically(InternalInjectorCreator.java:155)
+        at com.google.inject.internal.InternalInjectorCreator.build(InternalInjectorCreator.java:107)
+        at com.google.inject.Guice.createInjector(Guice.java:99)
+        at com.google.inject.Guice.createInjector(Guice.java:73)
+        at org.opt4j.core.start.Opt4JTask.open(Opt4JTask.java:136)
+        at org.opt4j.core.start.Opt4JTask.execute(Opt4JTask.java:90)
+        at org.opt4j.core.config.Task.call(Task.java:124)
+        at org.opt4j.core.config.Starter.execute(Starter.java:97)
+        at org.opt4j.core.start.Opt4JStarter.execute(Opt4JStarter.java:56)
+        at org.opt4j.core.start.Opt4JStarter.main(Opt4JStarter.java:45)
+        at org.opt4j.core.start.Opt4J.main(Opt4J.java:139)
+Exception in thread "main" com.google.inject.CreationException: Unable to create injector, see the following errors:
+
+1) No implementation for java.lang.String annotated with @org.opt4j.core.start.Constant(namespace=class java.lang.Object, value=control station file) was bound.
+  while locating java.lang.String annotated with @org.opt4j.core.start.Constant(namespace=class java.lang.Object, value=control station file)
+    for the 4th parameter of org.opt4j.CAE.VRP.VRPProblem.<init>(VRPProblem.java:132)
+  while locating org.opt4j.CAE.VRP.VRPProblem
+    for the 1st parameter of org.opt4j.CAE.VRP.VRPCreator.<init>(VRPCreator.java:27)
+  at org.opt4j.core.problem.ProblemModule.bindProblem(ProblemModule.java:140)
+
+2) No implementation for java.lang.String annotated with @org.opt4j.core.start.Constant(namespace=class java.lang.Object, value=control station file) was bound.
+  while locating java.lang.String annotated with @org.opt4j.core.start.Constant(namespace=class java.lang.Object, value=control station file)
+    for the 4th parameter of org.opt4j.CAE.VRP.VRPProblem.<init>(VRPProblem.java:132)
+  while locating org.opt4j.CAE.VRP.VRPProblem
+    for the 1st parameter of org.opt4j.CAE.VRP.VRPDecoder.<init>(VRPDecoder.java:30)
+  at org.opt4j.core.problem.ProblemModule.bindProblem(ProblemModule.java:140)
+
+3) No implementation for java.lang.String annotated with @org.opt4j.core.start.Constant(namespace=class java.lang.Object, value=swept file) was bound.
+  while locating java.lang.String annotated with @org.opt4j.core.start.Constant(namespace=class java.lang.Object, value=swept file)
+    for the 3rd parameter of org.opt4j.CAE.VRP.VRPProblem.<init>(VRPProblem.java:132)
+  while locating org.opt4j.CAE.VRP.VRPProblem
+    for the 1st parameter of org.opt4j.CAE.VRP.VRPCreator.<init>(VRPCreator.java:27)
+  at org.opt4j.core.problem.ProblemModule.bindProblem(ProblemModule.java:140)
+
+4) No implementation for java.lang.String annotated with @org.opt4j.core.start.Constant(namespace=class java.lang.Object, value=swept file) was bound.
+  while locating java.lang.String annotated with @org.opt4j.core.start.Constant(namespace=class java.lang.Object, value=swept file)
+    for the 3rd parameter of org.opt4j.CAE.VRP.VRPProblem.<init>(VRPProblem.java:132)
+  while locating org.opt4j.CAE.VRP.VRPProblem
+    for the 1st parameter of org.opt4j.CAE.VRP.VRPDecoder.<init>(VRPDecoder.java:30)
+  at org.opt4j.core.problem.ProblemModule.bindProblem(ProblemModule.java:140)
+
+4 errors
+        at com.google.inject.internal.Errors.throwCreationExceptionIfErrorsExist(Errors.java:470)
+        at com.google.inject.internal.InternalInjectorCreator.initializeStatically(InternalInjectorCreator.java:155)
+        at com.google.inject.internal.InternalInjectorCreator.build(InternalInjectorCreator.java:107)
+        at com.google.inject.Guice.createInjector(Guice.java:99)
+        at com.google.inject.Guice.createInjector(Guice.java:73)
+        at org.opt4j.core.start.Opt4JTask.open(Opt4JTask.java:136)
+        at org.opt4j.core.start.Opt4JTask.execute(Opt4JTask.java:90)
+        at org.opt4j.core.config.Task.call(Task.java:124)
+        at org.opt4j.core.config.Starter.execute(Starter.java:97)
+        at org.opt4j.core.start.Opt4JStarter.execute(Opt4JStarter.java:56)
+        at org.opt4j.core.start.Opt4JStarter.main(Opt4JStarter.java:45)
+        at org.opt4j.core.start.Opt4J.main(Opt4J.java:139)
+ERROR: El comando fallo con codigo 1: D:\cod\CAE1_win\opt4j\bin\opt4j-JVM1.8.bat -s D:\cod\CAE1_win\experiments\VRP_MO\config\experiments\config1.xml
+Traceback (most recent call last):
+  File "D:\cod\CAE1_win\experiments\VRP_MO\src\run_experiments.py", line 319, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "D:\cod\CAE1_win\experiments\VRP_MO\src\run_experiments.py", line 289, in main
+    run_opt4j(args.opt4j_cmd, config_file, workdir)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\cod\CAE1_win\experiments\VRP_MO\src\run_experiments.py", line 181, in run_opt4j
+    run_command(cmd, cwd=workdir)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\cod\CAE1_win\experiments\VRP_MO\src\run_experiments.py", line 165, in run_command
+    raise RuntimeError(f"El comando fallo con codigo {result.returncode}: {' '.join(cmd)}")
+RuntimeError: El comando fallo con codigo 1: D:\cod\CAE1_win\opt4j\bin\opt4j-JVM1.8.bat -s D:\cod\CAE1_win\experiments\VRP_MO\config\experiments\config1.xml
+
+D:\cod\CAE1_win\experiments\VRP_MO>pause
+Presione una tecla para continuar . . .
+
+D:\cod\CAE1_win\experiments\VRP_MO>
