@@ -8,7 +8,11 @@ set "OPT4J_CMD=..\..\opt4j\bin\opt4j-JVM1.8.bat"
 set "EXP_DIR=config\experiments"
 set "LOG_DIR=data\logs"
 set "RESULTS_DIR=data\results"
-set "RUNS=5"
+if "%~1"=="" (
+    set "RUNS=5"
+) else (
+    set "RUNS=%~1"
+)
 
 echo.
 echo ==========================================

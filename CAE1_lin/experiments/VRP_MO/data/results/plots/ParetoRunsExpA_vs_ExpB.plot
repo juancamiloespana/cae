@@ -6,7 +6,7 @@ data_dir="../../logs"
 exp1=1
 exp2=2
 run_start=1
-run_end=5
+run_end=10
 obj_x_col=4
 obj_y_col=5
 

@@ -1,7 +1,8 @@
 <configuration>
-  <module class="org.opt4j.CAE.VRP.VRPModule">
-    <property name="clients">100</property>
-    <property name="fileName"/>
+  <module class="org.opt4j.CAE.VRP.DronesModule">
+    <property name="clients">0</property>
+    <property name="fileName">D:\cod\CAE1_win\docs\Práctica Final\mapas\Valdebueyes\valdebueyes3.csv</property>
+    <property name="fileNameCS">D:\cod\CAE1_win\docs\Práctica Final\mapas\Valdebueyes\valdebueyes3-CS.csv</property>
     <property name="totalVehicles">10</property>
   </module>
   <module class="org.opt4j.core.common.logger.LoggerModule">
@@ -9,10 +10,16 @@
     <property name="loggingPerEvaluation">false</property>
     <property name="evaluationStep">100</property>
     <property name="loggingPerIteration">true</property>
-    <property name="iterationStep">1000</property>
+    <property name="iterationStep">1</property>
   </module>
-  <module class="org.opt4j.optimizers.rs.RandomSearchModule">
-    <property name="batchsize">100</property>
-    <property name="iterations">1000</property>
+  <module class="org.opt4j.optimizers.ea.EvolutionaryAlgorithmModule">
+    <property name="generations">10000</property>
+    <property name="alpha">50</property>
+    <property name="mu">50</property>
+    <property name="lambda">50</property>
+    <property name="crossoverRate">0.95</property>
+  </module>
+  <module class="org.opt4j.optimizers.ea.Nsga2Module">
+    <property name="tournament">2</property>
   </module>
 </configuration>

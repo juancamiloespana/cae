@@ -123,6 +123,9 @@ dmypy.json
 Thumbs.db
 *:Zone.Identifier
 
+# LaTeX build output
+docs/informe_latex/out/
+
 # CAE1 — heavy/unnecessary folders and files
 other_software/
 opt4j/jre1.8.0_301/
